@@ -37,7 +37,7 @@ export function getRelativeTime(date: Date): string {
 export function validateJiraUrl(url: string): boolean {
   try {
     const parsed = new URL(url);
-    return parsed.protocol === 'https:' && parsed.hostname.includes('atlassian.net');
+    return parsed.protocol === 'https:' && (parsed.hostname === 'atlassian.net' || parsed.hostname.endsWith('.atlassian.net'));
   } catch {
     return false;
   }

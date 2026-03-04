@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { formatDateTime } from '../../lib/utils';
 import { PRIORITY_COLORS, STATUS_COLORS } from '../../types';
 import type { JiraTicket } from '../../types';
@@ -56,7 +57,7 @@ export function TicketDetail({ ticket, onClose }: TicketDetailProps) {
             {ticket.description && (
               <div className="prose dark:prose-invert max-w-none mt-4">
                 <div
-                  dangerouslySetInnerHTML={{ __html: ticket.description }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(ticket.description) }}
                   className="text-gray-700 dark:text-gray-300"
                 />
               </div>
